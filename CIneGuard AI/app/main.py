@@ -41,7 +41,9 @@ def query_movie_script_semantically(query:str, movie_id: int):
 
 
 def reset_conversation_history(movie_id):
-  history[movie_id].clear()
+
+  if history.get(movie_id) is not None:
+    history[movie_id].clear()
 
 
 # if __name__ == "__main__":

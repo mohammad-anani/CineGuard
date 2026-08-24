@@ -8,6 +8,13 @@ def generate_guide(merged_section_filtered_chunks_ids):
   print("Starting generating movie guide based on final filtered merged chunks list, using a LLM, for each section")
   for section_name,chunks_ids in merged_section_filtered_chunks_ids.items():
 
+    if len(chunks_ids)==0:
+      print("Skipping generating guide for section: "+ section_name+" . No chunks")
+      movie_sections_guide[section_name]= {
+    'severityLevel':"None",
+    'descriptions': []
+        }
+      continue
     print("Generating movie guide for section: "+ section_name + " with "+ str(len(chunks_ids)) +" chunks")
     guide_list= generate_movie_section_guide(chunks_ids,section_name)
     print("Generated movie guide. Resulting list length: " + str(len(guide_list)))

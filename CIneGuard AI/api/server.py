@@ -25,7 +25,7 @@ def create_movie_guide(movie_id:int,request: GenerateGuideRequest):
 def query_movie(movie_id:int,request: QueryMovieRequest):
   try:
     answer = query_movie_script_semantically(request.query, movie_id)
-    return answer
+    return {'answer':answer}
   except Exception as e:
     raise HTTPException(status_code=500, detail=str(e))
 
