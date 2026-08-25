@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 
 import AddMovie from "./pages/AddMovie";
 import Home from "./pages/Home";
+import Movie from "./pages/Movie";
 import MovieDetails from "./pages/MovieDetails";
 import MovieQuery from "./pages/MovieQuery";
 import Movies from "./pages/Movies";
@@ -24,20 +25,11 @@ function App() {
           element={<AddMovie />}
         />
 
-        <Route
-          path="/movies/:id"
-          element={<MovieDetails />}
-        />
-
-        <Route
-          path="/movies/:id/query"
-          element={<MovieQuery />}
-        />
-
-        <Route
-          path="/movies/:id/script"
-          element={<MovieScript />}
-        />
+        <Route path="/movies/:id" element={<Movie />}>
+          <Route index element={<MovieDetails />} />
+          <Route path="query" element={<MovieQuery />} />
+          <Route path="script" element={<MovieScript />} />
+        </Route>
       </Routes>
     </div>
   );

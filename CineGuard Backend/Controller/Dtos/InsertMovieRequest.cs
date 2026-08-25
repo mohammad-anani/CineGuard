@@ -1,4 +1,4 @@
-﻿namespace CineGuard_Backend.Data
+﻿namespace CineGuard_Backend.Controller.Dtos
 {
     public class InsertMovieRequest
     {

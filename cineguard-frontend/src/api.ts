@@ -60,3 +60,13 @@ export async function resetConversation(movieId: number) {
     method: "PUT",
   });
 }
+
+export async function deleteMovie(id: number) {
+  const response = await fetch(`${API_URL}/api/movies/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to delete movie");
+  }
+}

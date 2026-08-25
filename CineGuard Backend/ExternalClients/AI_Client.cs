@@ -1,4 +1,4 @@
-﻿namespace CineGuard_Backend.Data
+﻿namespace CineGuard_Backend.ExternalClients
 {
     public class QueryResult
     {
@@ -75,6 +75,14 @@
             );
 
             response.EnsureSuccessStatusCode();
+        }
+
+        public async Task<bool> DeleteMovie(int movieId)
+        {
+            var response = await _httpClient.DeleteAsync(
+                $"/movies/{movieId}"
+            );
+            return response.IsSuccessStatusCode;
         }
     }
 }

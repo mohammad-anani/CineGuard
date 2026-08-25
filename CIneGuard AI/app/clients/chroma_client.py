@@ -60,3 +60,23 @@ def query_table(table_name,query_embedding, where, n_results=10):
   )
 
   return results
+
+
+def delete(table_name, ids=None, where=None):
+
+  if ids is None and where is None:
+    raise ValueError("Either ids or where must be provided")
+
+  collection = chroma_client.get_or_create_collection(
+    name=table_name
+  )
+
+  kwargs = {}
+
+  if ids is not None:
+    kwargs["ids"] = ids
+
+  if where is not None:
+    kwargs["where"] = where
+
+  collection.delete(**kwargs)

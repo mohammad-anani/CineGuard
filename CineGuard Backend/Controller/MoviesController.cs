@@ -1,6 +1,7 @@
 ﻿using CineGuard_Backend.Business;
-using CineGuard_Backend.Data;
-using CineGuard_Backend.Data.DbContextStore;
+using CineGuard_Backend.Controller.Dtos;
+using CineGuard_Backend.Data.DbContextStore.Entities;
+using CineGuard_Backend.ExternalClients;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CineGuard_Backend.Controller
@@ -37,7 +38,7 @@ namespace CineGuard_Backend.Controller
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Movie>> Get(int id)
+        public async Task<ActionResult<Movie>> Get([FromRoute] int id)
         {
             var movie = await _moviesBusiness.Get(id);
 
@@ -51,7 +52,7 @@ namespace CineGuard_Backend.Controller
 
         [HttpGet("{movieId}/query")]
         public async Task<ActionResult<QueryResult>> QueryMovie(
-            int movieId,
+            [FromRoute] int movieId,
             [FromQuery] string query)
         {
             var result = await _moviesBusiness.QueryMovieAsync(
@@ -68,9 +69,20 @@ namespace CineGuard_Backend.Controller
         }
 
         [HttpPut("{movieId}/reset-conversation")]
-        public async Task<IActionResult> ResetConversation(int movieId)
+        public async Task<IActionResult> ResetConversation([FromRoute] int movieId)
         {
             await _moviesBusiness.ResetConversationHistory(movieId);
+            return Ok();
+        }
+
+        [HttpDelete("{movieId}")]
+        public async Task<IActionResult> DeleteMovie([FromRoute] int movieId)
+        {
+            bool result = await _moviesBusiness.DeleteMovieAsync(movieId);
+            if (!result)
+            {
+                return NotFound();
+            }
             return Ok();
         }
     }

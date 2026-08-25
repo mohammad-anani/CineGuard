@@ -1,6 +1,7 @@
 using CineGuard_Backend.Business;
 using CineGuard_Backend.Data;
 using CineGuard_Backend.Data.DbContextStore;
+using CineGuard_Backend.ExternalClients;
 using CineGuard_Backend.Middlewares;
 using Microsoft.EntityFrameworkCore;
 using Serilog;

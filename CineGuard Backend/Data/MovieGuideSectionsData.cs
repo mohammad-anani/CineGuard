@@ -1,4 +1,5 @@
 ﻿using CineGuard_Backend.Data.DbContextStore;
+using CineGuard_Backend.Data.DbContextStore.Entities;
 
 namespace CineGuard_Backend.Data
 {

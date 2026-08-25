@@ -1,4 +1,4 @@
-from ..clients.chroma_client import insert_chunks,update_metadatas, get, query_table
+from ..clients.chroma_client import insert_chunks,update_metadatas, get, query_table,delete
 from ..database_operations.movie_script_crud_helpers import prepare_ids,prepare_insert_metadatas,prepare_update_metadatas
 from ..util.constants import SECTION_SCORE_DATABASE_KEYS
 
@@ -69,3 +69,8 @@ def query_movie_script(query_embedding, movie_id:int):
   result= query_table("movie_scripts",query_embedding,{"movie_id": movie_id},10)
   print(result)
   return result
+
+
+def delete_movie(movie_id):
+  delete(table_name="movie_scripts",ids=None,where={'movieId':movie_id})
+

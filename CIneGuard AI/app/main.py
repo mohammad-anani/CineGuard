@@ -2,6 +2,7 @@ from .function_containers.generate_guide import generate_guide
 from .function_containers.process_movie import process_movie
 from .query_movie.retreive_chunks import retreive_chunks
 from .query_movie.analyze_chunks import analyze_chunks,prepare_query
+from .database_operations.movie_script_crud import delete_movie
 
 def generate_movie_guide(script: str, movie_id: int):
 
@@ -45,6 +46,9 @@ def reset_conversation_history(movie_id):
   if history.get(movie_id) is not None:
     history[movie_id].clear()
 
+
+def delete_movie_by_id(movie_id):
+  delete_movie(movie_id)
 
 # if __name__ == "__main__":
 #   generate_movie_guide(get_text(), 3)

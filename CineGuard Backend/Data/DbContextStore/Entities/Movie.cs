@@ -1,4 +1,4 @@
-﻿namespace CineGuard_Backend.Data.DbContextStore
+﻿namespace CineGuard_Backend.Data.DbContextStore.Entities
 {
     public class Movie
     {

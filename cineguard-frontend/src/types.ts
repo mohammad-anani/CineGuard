@@ -1,3 +1,5 @@
+import type { SetStateAction } from "react";
+
 export type SeverityLevel =
   | "None"
   | "Mild"
@@ -41,3 +43,5 @@ export interface ChatMessage {
   role: "user" | "assistant";
   content: string;
 }
+
+export type Setter<T> = React.Dispatch<SetStateAction<T>>

@@ -1,5 +1,6 @@
 ﻿using CineGuard_Backend.Data;
-using CineGuard_Backend.Data.DbContextStore;
+using CineGuard_Backend.Data.DbContextStore.Entities;
+using CineGuard_Backend.ExternalClients;
 
 namespace CineGuard_Backend.Business
 {
@@ -37,6 +38,16 @@ namespace CineGuard_Backend.Business
             await movieGuideSectionsData.InsertBatchAsync(movieGuideSections);
 
             return result.Id;
+        }
+
+        public async Task<bool> DeleteMovieAsync(int movieId)
+        {
+            bool localResult = await _moviesData.DeleteMovie(movieId);
+
+            if (localResult)
+                return await aiClient.DeleteMovie(movieId);
+
+            return false;
         }
 
         public async Task<QueryResult> QueryMovieAsync(int movieId, string query)

@@ -1,3 +1,4 @@
+using CineGuard_Backend.Data.DbContextStore.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CineGuard_Backend.Data.DbContextStore

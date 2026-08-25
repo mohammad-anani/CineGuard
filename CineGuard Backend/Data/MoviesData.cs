@@ -1,4 +1,5 @@
 ﻿using CineGuard_Backend.Data.DbContextStore;
+using CineGuard_Backend.Data.DbContextStore.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace CineGuard_Backend.Data
@@ -24,6 +25,18 @@ namespace CineGuard_Backend.Data
             return await _context.Movies
                 .AsNoTracking()
                 .ToListAsync();
+        }
+
+        public async Task<bool> DeleteMovie(int movieId)
+        {
+            var movie = await _context.Movies.FindAsync(movieId);
+            if (movie == null)
+            {
+                return false;
+            }
+            _context.Movies.Remove(movie);
+            await _context.SaveChangesAsync();
+            return true;
         }
 
         public async Task<Movie?> GetByMovieIdAsync(int movieId)
